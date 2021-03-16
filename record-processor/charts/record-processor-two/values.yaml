@@ -1,0 +1,20 @@
+service:
+  name: record-processor-two
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 5Gi
+  requests:
+    cpu: 500m
+    memory: 3Gi
+
+hpa:
+  minReplicas: 5
+  maxReplicas: 10
+
+envVars:
+  KAFKA_TOPIC_PREFIX:
+    value: "large.events."
+  KAFKA_TOPIC:
+    value: ["large.events.one"]

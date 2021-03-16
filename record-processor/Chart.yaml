@@ -1,0 +1,12 @@
+apiVersion: v2
+description: A Helm chart for Kubernetes deployments of the record-processor
+name: record-processor-parent
+version: 0.0.1
+
+# name must match name in child chart's Chart.yaml
+dependencies:
+  # processor one doesn't have a condition so it always deploys
+  - name: record-processor-one
+  # processor two only deploys when isUpperEnvDeployment is set to true in pipeline
+  - name: record-processor-two
+    condition: isUpperEnvDeployment

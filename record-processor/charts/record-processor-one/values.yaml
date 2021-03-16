@@ -1,0 +1,20 @@
+service:
+  name: record-processor-one
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 3Gi
+  requests:
+    cpu: 200m
+    memory: 1Gi
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 10
+
+envVars:
+  KAFKA_TOPIC_PREFIX:
+    value: "kafka.topic."
+  KAFKA_TOPIC:
+    value: ["kafka.topic.one", "kafka.topic.two"]
